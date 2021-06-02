@@ -4,6 +4,14 @@ const ADDRESS = '';
 const ZIPCITY = '';
 const PHONE = '';
 
+// stop if test fails
+afterEach(function() {
+  if (this.currentTest.state === 'failed') {
+    Cypress.runner.stop()
+  }
+});
+
+// for a total list, check readme.md
 const VACCINATION_PLACES = [
 	{
 		name: 'Ballerup',
@@ -22,7 +30,6 @@ const VACCINATION_PLACES = [
 		inputId: 'ch_50088941-106780586'
 	}
 ];
-
 
 VACCINATION_PLACES.forEach((vaccinationPlace) => {
 	describe('Order vaccine from: ' + vaccinationPlace.name, () => {
@@ -86,7 +93,17 @@ VACCINATION_PLACES.forEach((vaccinationPlace) => {
 			const nextButton = cy.get('.next-area .next-button').first();
 			nextButton.click();
 		});
-	
+
+		/* ensure vaccination list is unchanged */
+		it('Is the same list as when creating this script', () => {
+			const firstOption = cy.get('.closed-vertical-choice').first();
+			firstOption.contains('Ballerup, Baltorpvej 18').should('be.visible');
+
+
+			const lastOption = cy.get('.closed-vertical-choice').last();
+			lastOption.contains('Frederikssund Hospital').should('be.visible');
+		});
+
 		/* choose vaccination place */
 		it('Choose vaccination place', () => {
 			const vaccinationRadio = cy.get('label[for="' + vaccinationPlace.inputId + '"]').first();
@@ -97,17 +114,17 @@ VACCINATION_PLACES.forEach((vaccinationPlace) => {
 			nextButton.click();
 		});
 
-		/* submit form */
-		it('Can submit form', () => {
-			const nextButton = cy.get('.next-area .next-button').first();
-			nextButton.click();
-		});
+		// /* submit form */
+		// it('Can submit form', () => {
+		// 	const nextButton = cy.get('.next-area .next-button').first();
+		// 	nextButton.click();
+		// });
 
-		/* ensures form is submitted correctly */
-		it('Ensures confirmation is visible', () => {
-			cy.get('.questions .text-element strong').contains('Mange tak for din registrering').should('be.visible');
-			cy.wait(5000);
-		});
+		// /* ensures form is submitted correctly */
+		// it('Ensures confirmation is visible', () => {
+		// 	cy.get('.questions .text-element strong').contains('Mange tak for din registrering').should('be.visible');
+		// 	cy.wait(5000);
+		// });
 
 	});
 })
