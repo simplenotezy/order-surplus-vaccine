@@ -5,7 +5,7 @@ Simply edit `cypress/integration/order.js` and fill out your personal details, a
 
 # Getting started
 1. Run `npm install`
-2. Fill out your personal details in `cypress/integration/order.js`
+2. Fill out your personal details in `cypress/integration/order.js` and choose vaccination places
 3. Run `order:vaccine`
 
 # List of vaccination places
