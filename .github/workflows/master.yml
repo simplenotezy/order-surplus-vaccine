@@ -1,4 +1,4 @@
-name: Cypress Tests
+name: Daily surplus vaccine
 
 on: [push]
 # on:
@@ -14,8 +14,8 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v2
         env:
-          NAME: ${{ secrets.NAME }}
-          AGE: ${{ secrets.AGE }}
-          ADDRESS: ${{ secrets.ADDRESS }}
-          ZIPCITY: ${{ secrets.ZIPCITY }}
-          PHONE: ${{ secrets.PHONE }}
+          CYPRESS_NAME: ${{ secrets.NAME }}
+          CYPRESS_AGE: ${{ secrets.AGE }}
+          CYPRESS_ADDRESS: ${{ secrets.ADDRESS }}
+          CYPRESS_ZIPCITY: ${{ secrets.ZIPCITY }}
+          CYPRESS_PHONE: ${{ secrets.PHONE }}
