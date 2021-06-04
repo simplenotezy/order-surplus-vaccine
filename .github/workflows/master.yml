@@ -6,12 +6,12 @@ on:
     - cron:  '1 0 * * *'
 
 jobs:
-  cypress-run:
+  order-surplus-vaccine:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Cypress run
+      - name: Order vaccine
         uses: cypress-io/github-action@v2
         env:
           CYPRESS_NAME: ${{ secrets.NAME }}
