@@ -1,6 +1,9 @@
 name: Cypress Tests
 
 on: [push]
+# on:
+#   schedule:
+#     - cron:  '1 0 * * *'
 
 jobs:
   cypress-run:
@@ -11,8 +14,8 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v2
         env:
-          NAME: 'Test'
-          AGE: 'Test'
-          ADDRESS: 'Test'
-          ZIPCITY: 'Test'
-          PHONE: 'Test'
+          NAME: ${{ secrets.NAME }}
+          AGE: ${{ secrets.AGE }}
+          ADDRESS: ${{ secrets.ADDRESS }}
+          ZIPCITY: ${{ secrets.ZIPCITY }}
+          PHONE: ${{ secrets.PHONE }}
