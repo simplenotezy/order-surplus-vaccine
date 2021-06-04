@@ -1,8 +1,10 @@
-const NAME = 'Mattias Siø Fjellvang';
-const AGE = '26';
-const ADDRESS = '';
-const ZIPCITY = '';
-const PHONE = '';
+require('dotenv').config();
+
+const NAME = Cypress.env('NAME') || 'Mattias Siø Fjellvang';
+const AGE = Cypress.env('AGE') || '26';
+const ADDRESS = Cypress.env('ADDRESS') || '';
+const ZIPCITY = Cypress.env('ZIPCITY') || '';
+const PHONE = Cypress.env('PHONE') || '';
 
 // stop if test fails
 afterEach(function() {
@@ -32,7 +34,12 @@ const VACCINATION_PLACES = [
 ];
 
 VACCINATION_PLACES.forEach((vaccinationPlace) => {
-	describe('Order vaccine from: ' + vaccinationPlace.name, () => {
+
+	if(!NAME || !AGE || !ADDRESS || !ZIPCITY || !PHONE) {
+		Cypress.runner.stop()
+	}
+
+	describe('Order vaccine from: ' + vaccinationPlace.name + ' for ' + NAME, () => {
 		/* open page */
 		it('Open page', () => {
 			cy.wait(2000);
@@ -114,13 +121,13 @@ VACCINATION_PLACES.forEach((vaccinationPlace) => {
 			nextButton.click();
 		});
 
-		// /* submit form */
+		/* submit form */
 		// it('Can submit form', () => {
 		// 	const nextButton = cy.get('.next-area .next-button').first();
 		// 	nextButton.click();
 		// });
 
-		// /* ensures form is submitted correctly */
+		/* ensures form is submitted correctly */
 		// it('Ensures confirmation is visible', () => {
 		// 	cy.get('.questions .text-element strong').contains('Mange tak for din registrering').should('be.visible');
 		// 	cy.wait(5000);

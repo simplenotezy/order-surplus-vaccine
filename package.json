@@ -1,5 +1,8 @@
 {
   "scripts": {
     "order:vaccine": "cypress run"
+  },
+  "dependencies": {
+    "cypress": "^7.4.0"
   }
 }
