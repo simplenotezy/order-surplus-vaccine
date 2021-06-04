@@ -1,5 +1,3 @@
-require('dotenv').config();
-
 const NAME = Cypress.env('NAME') || 'Mattias Siø Fjellvang';
 const AGE = Cypress.env('AGE') || '26';
 const ADDRESS = Cypress.env('ADDRESS') || '';
