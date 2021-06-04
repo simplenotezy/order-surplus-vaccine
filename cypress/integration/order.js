@@ -120,16 +120,16 @@ VACCINATION_PLACES.forEach((vaccinationPlace) => {
 		});
 
 		/* submit form */
-		// it('Can submit form', () => {
-		// 	const nextButton = cy.get('.next-area .next-button').first();
-		// 	nextButton.click();
-		// });
+		it('Can submit form', () => {
+			const nextButton = cy.get('.next-area .next-button').first();
+			nextButton.click();
+		});
 
 		/* ensures form is submitted correctly */
-		// it('Ensures confirmation is visible', () => {
-		// 	cy.get('.questions .text-element strong').contains('Mange tak for din registrering').should('be.visible');
-		// 	cy.wait(5000);
-		// });
+		it('Ensures confirmation is visible', () => {
+			cy.get('.questions .text-element strong').contains('Mange tak for din registrering').should('be.visible');
+			cy.wait(5000);
+		});
 
 	});
 })
