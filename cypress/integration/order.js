@@ -32,11 +32,25 @@ const VACCINATION_PLACES = [
 ];
 
 // wait 120 seconds
-describe('Wait 120 seconds', () => {
-	it('Waits for time to pass...', () => {
-		cy.wait(120000);
+
+var now = new Date();
+var night = new Date(
+    now.getFullYear(),
+    now.getMonth(),
+    now.getDate() + 1, // the next day, ...
+    0, 0, 0 // ...at 00:00:00 hours
+);
+var msTillMidnight = night.getTime() - now.getTime();
+
+if (msTillMidnight < 300000) { // if less than  5 minutes to midnight. Wait
+	const waitTime = msTillMidnight + 60000;
+	
+	describe('Wait for midnight', () => {
+		it('Waits for ' + (waitTime / 1000) + ' seconds to pass...', () => {
+			cy.wait(waitTime); // ms to midnight + a buffer on 60 seconds to accommodate for potential time-buffers on endsystem 
+		});
 	});
-});
+}
 
 VACCINATION_PLACES.forEach((vaccinationPlace) => {
 
