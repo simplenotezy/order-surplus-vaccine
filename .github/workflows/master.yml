@@ -3,7 +3,7 @@ name: Daily surplus vaccine
 # on: [push]
 on:
   schedule:
-    - cron:  '1 0 * * *'
+    - cron:  '58 23 * * *'
 
 jobs:
   order-surplus-vaccine:

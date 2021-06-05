@@ -31,11 +31,18 @@ const VACCINATION_PLACES = [
 	}
 ];
 
+// wait 120 seconds
+describe('Wait 120 seconds', () => {
+	it('Waits for time to pass...', () => {
+		cy.wait(120000);
+	});
+});
+
 VACCINATION_PLACES.forEach((vaccinationPlace) => {
 
-	if(!NAME || !AGE || !ADDRESS || !ZIPCITY || !PHONE) {
-		Cypress.runner.stop()
-	}
+	// if(!NAME || !AGE || !ADDRESS || !ZIPCITY || !PHONE) {
+	// 	Cypress.runner.stop()
+	// }
 
 	describe('Order vaccine from: ' + vaccinationPlace.name + ' for ' + NAME, () => {
 		/* open page */
