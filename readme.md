@@ -3,6 +3,10 @@ I wrote this simple script to help you write your name up on the surplus vaccine
 
 Simply edit `cypress/integration/order.js` and fill out your personal details, and the vaccination places you'd like to signup for.
 
+You may also set cypress environment variables instead.
+
+Personally I have a Github Action run it on schedule and have added my personal details as github secrets, so I'm automatically added to the list every day.
+
 # Getting started
 1. Run `npm install`
 2. Fill out your personal details in `cypress/integration/order.js` and choose vaccination places
