@@ -33,16 +33,16 @@ const VACCINATION_PLACES = [
 
 // wait 120 seconds
 
-var now = new Date();
-var night = new Date(
+const now = new Date();
+const night = new Date(
     now.getFullYear(),
     now.getMonth(),
     now.getDate() + 1, // the next day, ...
     0, 0, 0 // ...at 00:00:00 hours
 );
-var msTillMidnight = night.getTime() - now.getTime();
+const msTillMidnight = night.getTime() - now.getTime();
 
-if (msTillMidnight < 300000) { // if less than  5 minutes to midnight. Wait
+if (msTillMidnight < 300000) { // if less than 5 minutes to midnight. Wait
 	const waitTime = msTillMidnight + 60000;
 	
 	describe('Wait for midnight', () => {
