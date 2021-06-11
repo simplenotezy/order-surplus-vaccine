@@ -14,20 +14,12 @@ afterEach(function() {
 // for a total list, check readme.md
 const VACCINATION_PLACES = [
 	{
-		name: 'Ballerup',
-		inputId: 'ch_50088941-106780581'
-	},
-	{
 		name: 'Hillerød',
 		inputId: 'ch_50088941-106780584'
 	},
 	{
-		name: 'Bella Center',
-		inputId: 'ch_50088941-106780582'
-	},
-	{
-		name: 'Øksenhallen, Halmtorvet',
-		inputId: 'ch_50088941-106780586'
+		name: 'Frederikssund Hospital',
+		inputId: 'ch_50088941-187278225'
 	}
 ];
 
