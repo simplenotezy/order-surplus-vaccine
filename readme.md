@@ -1,5 +1,5 @@
 # Order a Danish surplus vaccine 
-I wrote this simple script to help you write your name up on the surplus vaccine program.
+I wrote this simple script to help you write your name up on the surplus vaccine program (https://www.regionh.dk/presse-og-nyt/pressemeddelelser-og-nyheder/Sider/Tilmelding-til-at-modtage-overskydende-vaccine-mod-COVID-19.aspx)
 
 Simply edit `cypress/integration/order.js` and fill out your personal details, and the vaccination places you'd like to signup for.
 
