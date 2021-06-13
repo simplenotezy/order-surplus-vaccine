@@ -14,8 +14,8 @@ jobs:
       - name: Order vaccine
         uses: cypress-io/github-action@v2
         env:
-          CYPRESS_NAME: ${{ secrets.NAME }}
-          CYPRESS_AGE: ${{ secrets.AGE }}
-          CYPRESS_ADDRESS: ${{ secrets.ADDRESS }}
-          CYPRESS_ZIPCITY: ${{ secrets.ZIPCITY }}
-          CYPRESS_PHONE: ${{ secrets.PHONE }}
+          CYPRESS_NAME: 'Mia Bretlau Nybroe'
+          CYPRESS_AGE: '28'
+          CYPRESS_ADDRESS: 'Bakkesvinget 17'
+          CYPRESS_ZIPCITY: '3550 Slangerup'
+          CYPRESS_PHONE: '31148212'
