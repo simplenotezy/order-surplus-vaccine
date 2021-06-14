@@ -1,12 +1,7 @@
-//const NAME = Cypress.env('NAME') || 'Mia Bretlau Nybroe';
 const NAME = 'Mia Bretlau Nybroe';
-//const AGE = Cypress.env('AGE') || '28';
 const AGE = '28';
-//const ADDRESS = Cypress.env('ADDRESS') || '';
 const ADDRESS = 'Bakkesvinget 17';
-//const ZIPCITY = Cypress.env('ZIPCITY') || '';
 const ZIPCITY = '3550 Slangerup';
-//const PHONE = Cypress.env('PHONE') || '';
 const PHONE = '31148212';
 
 // stop if test fails
