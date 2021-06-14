@@ -18,7 +18,7 @@ const VACCINATION_PLACES = [
 		inputId: 'ch_50088941-106780584'
 	},
 	{
-		name: 'Frederikssund Hospital',
+		name: 'Frederikssund Hospital, Frederikssundsvej 30 (kun opskrivning  torsdag)',
 		inputId: 'ch_50088941-187278225'
 	}
 ];
