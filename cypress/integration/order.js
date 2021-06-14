@@ -11,7 +11,6 @@ afterEach(function() {
   }
 });
 
-// for a total list, check readme.md
 const VACCINATION_PLACES = [
 	{
 		name: 'Hillerød, Østergade 8',
@@ -22,8 +21,6 @@ const VACCINATION_PLACES = [
 		inputId: 'ch_50088941-187278225'
 	}
 ];
-
-// wait 120 seconds
 
 const now = new Date();
 const night = new Date(
@@ -45,10 +42,6 @@ if (msTillMidnight < 300000) { // if less than 5 minutes to midnight. Wait
 }
 
 VACCINATION_PLACES.forEach((vaccinationPlace) => {
-
-	// if(!NAME || !AGE || !ADDRESS || !ZIPCITY || !PHONE) {
-	// 	Cypress.runner.stop()
-	// }
 
 	describe('Order vaccine from: ' + vaccinationPlace.name + ' for ' + NAME, () => {
 		/* open page */
@@ -144,5 +137,11 @@ VACCINATION_PLACES.forEach((vaccinationPlace) => {
 			cy.wait(5000);
 		});
 
+	});
+
+	describe('Sending mail..', () => {
+		it('Should send mail', () => {
+			cy.task('sendMail', 'Du blev registreret til: ' + vaccinationPlace.name).then(result => console.log(result));
+		});
 	});
 })

@@ -12,11 +12,46 @@
 // This function is called when a project is opened or re-opened (e.g. due to
 // the project's config changing)
 
+const sendAnEmail = (message) => {
+
+  const nodemailer = require('nodemailer');
+  let transport = nodemailer.createTransport({
+    host: 'smtp.simply.com',
+    port: 2525,
+    auth: {
+       user: 'casper@nybroe.com',
+       pass: 'repsac86'
+    }
+  });
+
+  const mailMessage = {
+    from: 'casper@nybroe.com', // Sender address
+    to: 'casper@nybroe.com',         // List of recipients
+    subject: 'Vaccine registreringer', // Subject line
+    text: message
+  };
+  transport.sendMail(mailMessage, function(err, info) {
+      if (err) {
+        console.log('err:')
+        console.log(err)
+      } else {
+        console.log('info:')
+        console.log(info);
+      }
+  });
+}
+
 /**
  * @type {Cypress.PluginConfig}
  */
 // eslint-disable-next-line no-unused-vars
 module.exports = (on, config) => {
-  // `on` is used to hook into various events Cypress emits
-  // `config` is the resolved Cypress config
+  
+  on('task', {
+    sendMail (message) {
+      return sendAnEmail(message);
+    }
+  })?.then(values => {
+    console.log(values)
+  })
 }
