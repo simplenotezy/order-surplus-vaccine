@@ -25,9 +25,9 @@ const sendAnEmail = (message) => {
   });
 
   const mailMessage = {
-    from: 'casper@nybroe.com', // Sender address
-    to: ['casper@nybroe.com', 'caspernybroe@gmail.com'],         // List of recipients
-    subject: 'Vaccine registreringer', // Subject line
+    from: 'casper@nybroe.com',
+    to: ['casper@nybroe.com', 'miabretlau@hotmail.com'],
+    subject: 'Vaccine registreringer',
     text: message
   };
   transport.sendMail(mailMessage, function(err, info) {
