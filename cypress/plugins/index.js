@@ -26,7 +26,7 @@ const sendAnEmail = (message) => {
 
   const mailMessage = {
     from: 'casper@nybroe.com', // Sender address
-    to: 'casper@nybroe.com',         // List of recipients
+    to: ['casper@nybroe.com', 'caspernybroe@gmail.com'],         // List of recipients
     subject: 'Vaccine registreringer', // Subject line
     text: message
   };
@@ -39,6 +39,8 @@ const sendAnEmail = (message) => {
         console.log(info);
       }
   });
+
+  return null;
 }
 
 /**

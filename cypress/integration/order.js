@@ -41,7 +41,7 @@ if (msTillMidnight < 300000) { // if less than 5 minutes to midnight. Wait
 	});
 }
 
-VACCINATION_PLACES.forEach((vaccinationPlace) => {
+VACCINATION_PLACES.forEach((vaccinationPlace, i) => {
 
 	describe('Order vaccine from: ' + vaccinationPlace.name + ' for ' + NAME, () => {
 		/* open page */
@@ -138,10 +138,12 @@ VACCINATION_PLACES.forEach((vaccinationPlace) => {
 		});
 
 	});
-
-	describe('Sending mail..', () => {
-		it('Should send mail', () => {
-			cy.task('sendMail', 'Du blev registreret til: ' + vaccinationPlace.name).then(result => console.log(result));
-		});
-	});
 })
+
+describe('Sending mail', () => {
+	const places = VACCINATION_PLACES.map(x => x.name).join(', ')
+	it('Should send mail', () => {
+		cy.task('sendMail', 'Du blev registreret til: ' + places).then(result => console.log(result));
+		cy.wait(5000);
+	});
+});
