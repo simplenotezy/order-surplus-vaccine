@@ -1,8 +1,8 @@
 const NAME = 'Mia Bretlau Nybroe';
-const AGE = '28';
+const AGE = 28;
 const ADDRESS = 'Bakkesvinget 17';
 const ZIPCITY = '3550 Slangerup';
-const PHONE = '31148212';
+const PHONE = 31148212;
 
 // stop if test fails
 afterEach(function() {
