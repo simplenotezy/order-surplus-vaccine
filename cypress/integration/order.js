@@ -14,7 +14,7 @@ afterEach(function() {
 // for a total list, check readme.md
 const VACCINATION_PLACES = [
 	{
-		name: 'Hillerød',
+		name: 'Hillerød, Østergade 8',
 		inputId: 'ch_50088941-106780584'
 	},
 	{
