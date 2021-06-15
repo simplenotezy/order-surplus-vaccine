@@ -1,8 +1,8 @@
-const NAME = 'Mia Bretlau Nybroe';
-const AGE = 28;
-const ADDRESS = 'Bakkesvinget 17';
-const ZIPCITY = '3550 Slangerup';
-const PHONE = 31148212;
+const NAME = Cypress.env('NAME') || 'Foo bar';
+const AGE = Cypress.env('AGE') || 28;
+const ADDRESS = Cypress.env('ADDRESS') || '';
+const ZIPCITY = Cypress.env('ZIPCITY') || '';
+const PHONE = Cypress.env('PHONE') || '';
 
 // stop if test fails
 afterEach(function() {
@@ -41,6 +41,15 @@ if (msTillMidnight < 300000) { // if less than 5 minutes to midnight. Wait
 	});
 }
 
+const EMAIL_CONFIG = {
+	EMAILSMTPHOST: Cypress.env('EMAILSMTPHOST'),
+  	EMAILSMTPORT: Cypress.env('EMAILSMTPORT'),
+  	EMAILAUTHUSER: Cypress.env('EMAILAUTHUSER'),
+  	EMAILAUTHPASS: Cypress.env('EMAILAUTHPASS'),
+  	FROMEMAIL: Cypress.env('FROMEMAIL'),
+  	TOEMAILS: Cypress.env('TOEMAILS')?.split(',')
+}
+
 VACCINATION_PLACES.forEach((vaccinationPlace, i) => {
 
 	describe('Order vaccine from: ' + vaccinationPlace.name + ' for ' + NAME, () => {
@@ -56,7 +65,7 @@ VACCINATION_PLACES.forEach((vaccinationPlace, i) => {
 		});
 	
 		/* name */
-		it('Fill out firstname', () => {
+		it('Fill out firstname: ' + NAME, () => {
 			const nameInputField = cy.get('.single-line input').first();
 			nameInputField.type(NAME).blur();
 		});
@@ -66,7 +75,7 @@ VACCINATION_PLACES.forEach((vaccinationPlace, i) => {
 		});
 	
 		/* age */
-		it('Fill out age', () => {
+		it('Fill out age: ' + AGE, () => {
 			const ageInputField = cy.get('.single-line input').first();
 			ageInputField.type(AGE).blur();
 		});
@@ -76,7 +85,7 @@ VACCINATION_PLACES.forEach((vaccinationPlace, i) => {
 		});
 	
 		/* address */
-		it('Fill out address', () => {
+		it('Fill out address: ' + ADDRESS, () => {
 			const addressInputField = cy.get('.single-line input').first();
 			addressInputField.type(ADDRESS).blur();
 		});
@@ -86,7 +95,7 @@ VACCINATION_PLACES.forEach((vaccinationPlace, i) => {
 		});
 	
 		/* zipcity */
-		it('Fill out zip & city', () => {
+		it('Fill out zip & city: ' + ZIPCITY, () => {
 			const zipCityInputField = cy.get('.single-line input').first();
 			zipCityInputField.type(ZIPCITY).blur();
 		});
@@ -96,7 +105,7 @@ VACCINATION_PLACES.forEach((vaccinationPlace, i) => {
 		});
 	
 		/* phone */
-		it('Fill out phone', () => {
+		it('Fill out phone: ' + PHONE, () => {
 			const phoneInputField = cy.get('.single-line input').first();
 			phoneInputField.type(PHONE).blur();
 		});
@@ -120,7 +129,8 @@ VACCINATION_PLACES.forEach((vaccinationPlace, i) => {
 			const vaccinationRadio = cy.get('label[for="' + vaccinationPlace.inputId + '"]').first();
 			vaccinationRadio.click();
 		});
-		it('Can click next after chosing vccination place', () => {
+
+		it('Can click next after chosing vaccination place', () => {
 			const nextButton = cy.get('.next-area .next-button').first();
 			nextButton.click();
 		});
@@ -140,10 +150,14 @@ VACCINATION_PLACES.forEach((vaccinationPlace, i) => {
 	});
 })
 
-describe('Sending mail', () => {
-	const places = VACCINATION_PLACES.map(x => x.name).join(', ')
-	it('Should send mail', () => {
-		cy.task('sendMail', 'Du blev registreret til: ' + places).then(result => console.log(result));
-		cy.wait(5000);
+if (EMAIL_CONFIG.EMAILSMTPHOST) {
+	describe('Sending mail to: ' + EMAIL_CONFIG.TOEMAILS.join(', '), () => {
+		const places = VACCINATION_PLACES.map(x => x.name).join(', ')
+		EMAIL_CONFIG.REGISTEREDTO = 'Du blev registreret til: ' + places
+	
+		it('Should send mail', () => {
+			cy.task('sendMail', EMAIL_CONFIG).then(result => console.log(result));
+			cy.wait(5000);
+		});
 	});
-});
+}

@@ -12,23 +12,30 @@
 // This function is called when a project is opened or re-opened (e.g. due to
 // the project's config changing)
 
-const sendAnEmail = (message) => {
+const sendAnEmail = (EMAIL_CONFIG) => {
+  if (!EMAIL_CONFIG.EMAILSMTPHOST) {
+    console.log('No email smtp host. Bailing out..')
+    return null;
+  }
+
+  console.log('initiate email')
+  console.log(EMAIL_CONFIG)
 
   const nodemailer = require('nodemailer');
   let transport = nodemailer.createTransport({
-    host: 'smtp.simply.com',
-    port: 2525,
+    host: EMAIL_CONFIG.EMAILSMTPHOST,
+    port: EMAIL_CONFIG.EMAILSMTPORT,
     auth: {
-       user: 'casper@nybroe.com',
-       pass: 'repsac86'
+       user: EMAIL_CONFIG.EMAILAUTHUSER,
+       pass: EMAIL_CONFIG.EMAILAUTHPASS
     }
   });
 
   const mailMessage = {
-    from: 'casper@nybroe.com',
-    to: ['casper@nybroe.com', 'miabretlau@hotmail.com'],
+    from: EMAIL_CONFIG.FROMEMAIL,
+    to: EMAIL_CONFIG.TOEMAILS,
     subject: 'Vaccine registreringer',
-    text: message
+    text: EMAIL_CONFIG.REGISTEREDTO
   };
   transport.sendMail(mailMessage, function(err, info) {
       if (err) {
