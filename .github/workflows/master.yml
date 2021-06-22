@@ -1,0 +1,27 @@
+name: Daily surplus vaccine
+
+# on: [push]
+on:
+  schedule:
+    - cron:  '58 23 * * *'
+
+jobs:
+  order-surplus-vaccine:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Order vaccine
+        uses: cypress-io/github-action@v2
+        env:
+          CYPRESS_NAME: ${{ secrets.NAME }}
+          CYPRESS_AGE: ${{ secrets.AGE }}
+          CYPRESS_ADDRESS: ${{ secrets.ADDRESS }}
+          CYPRESS_ZIPCITY: ${{ secrets.ZIPCITY }}
+          CYPRESS_PHONE: ${{ secrets.PHONE }}
+          CYPRESS_FROMEMAIL: ${{ secrets.FROMEMAIL }}
+          CYPRESS_TOEMAILS: ${{ secrets.TOEMAILS }}
+          CYPRESS_EMAILSMTPHOST: ${{ secrets.EMAILSMTPHOST }}
+          CYPRESS_EMAILSMTPORT: ${{ secrets.EMAILSMTPORT }}
+          CYPRESS_EMAILAUTHUSER: ${{ secrets.EMAILAUTHUSER }}
+          CYPRESS_EMAILAUTHPASS: ${{ secrets.EMAILAUTHPASS }}
